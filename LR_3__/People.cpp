@@ -22,9 +22,10 @@ People::~People() { }
 
 void People::Describe()
 {
-	Get_full_name();
-	Get_date_of_birth();
-	Get_nationality();
+	std::cout<< "ФИО: " << Get_full_name() << endl;
+	std::cout << "Дата рождения: " << Get_date_of_birth() << endl;
+	std::cout << "Национальность: " << Get_nationality() << endl;
+	std::cout << "\n";
 }
 
 string People::Get_full_name() { return full_name; }

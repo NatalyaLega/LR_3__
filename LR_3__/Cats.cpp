@@ -31,8 +31,10 @@ string Cats::Get_sizes() { return sizes; }
 
 void Cats::Describe()
 {
-	Get_full_name_of_the_owner();
-	Get_breed();
-	Get_nickname();
-	Get_coat_color();
+	std::cout << "Полное имя владельца: " << Get_full_name_of_the_owner() << endl;
+	std::cout << "Порода: " << Get_breed() << endl;
+	std::cout << "Кличка: " << Get_nickname() << endl;
+	std::cout << "Окрас: " << Get_coat_color() << endl;
+	std::cout << "Размеры(длина_ширина): " << Get_sizes() << endl;
+	std::cout << "\n";
 }

@@ -44,16 +44,20 @@ int main()
 	{
 	case 1: //Вручную
 		system("cls");
-		cout << "Введите данные для 'человека' через пробел(вместо пробела в данных нижнее подчеркивание): ";
+		cout << "~" << "Введите данные 'человека' через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
+		cout << "ФИО, Дата рождения, Национальность\n\n";
 		cin >> full_name_people >> date_of_birth_people >> nationality_people;
 
-		cout << "Введите данные для 'собаки'через пробел(вместо пробела в данных нижнее подчеркивание):";
+		cout << "\n" << "~" << "Введите данные 'собаки'через пробел(вместо пробела в данных нижнее подчеркивание):" << endl;
+		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
 		cin >> breed_dog >> nickname_dog >> coat_color_dog >> full_name_of_the_owner_dog >> sizes_dog;
 
-		cout << "Введите данные для 'кошки'через пробел(вместо пробела в данных нижнее подчеркивание): ";
+		cout << "\n" << "~" << "Введите данные 'кошки'через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
+		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
 		cin >> breed_cat >> nickname_cat >> coat_color_cat >> full_name_of_the_owner_cat >> sizes_cat;
 
-		cout << "Введите данные для 'рыбы'через пробел(вместо пробела в данных нижнее подчеркивание): ";
+		cout << "\n" << "~" << "Введите данные 'рыбы'через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
+		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
 		cin >> breed_fish >> nickname_fish >> coat_color_fish >> full_name_of_the_owner_fish >> sizes_fish;
 		break;
 	case 2:
@@ -75,6 +79,8 @@ int main()
 	default:
 		break;
 	}
+
+	//ВОТ ТУТ НУЖНО СОЗДАВАТЬ НЕ 4, А СТОЛЬКО, СКОЛЬКО ЗАХОЧЕТ ПОЛЬЗОВАТЕЛЬ. пока не знаю как...ЕЩЕ РЕАЛИЗОВАТЬ ПОДСЧЕТ ОБЪЕКТОВ С ПОМОЩЬЮ СТАТИЧЕСКОЙ ПЕРЕМЕННОЙ
 	Mammals* mamm[4];
 	People people(full_name_people, date_of_birth_people, nationality_people);
 	Cats cat(breed_cat, nickname_cat, coat_color_cat, full_name_of_the_owner_cat, sizes_cat);
@@ -87,14 +93,41 @@ int main()
 
 	system("pause");
 	system("cls");
-	/*cout << "Описание человека: " << mamm[0]->Describe() << ", ФИО: " << full_name_people << ",дата рождения: " << date_of_birth_people << ",национальность: " << nationality_people << endl;
-	cout << "Описание кошки: " << mamm[1]->Describe() << ", порода: " << breed_cat << ", кличка: " << nickname_cat << ", окрас: " << coat_color_cat << ", ФИО владельца: " << full_name_of_the_owner_cat << ", размеры " << sizes_cat << endl;
-	cout << "Описание собаки: " << mamm[2]->Describe() << ", порода: " << breed_dog << ", кличка: " << nickname_dog << ", окрас: " << coat_color_dog << ", ФИО владельца: " << full_name_of_the_owner_dog << ", размеры " << sizes_dog << endl;
-	cout << "Описание рыбы: " << mamm[3]->Describe() << ", порода: " << breed_fish << ", кличка: " << nickname_fish << ", окрас: " << coat_color_fish << ", ФИО влад*/ельца: " << full_name_of_the_owner_fish << ", размеры " << sizes_fish << endl;
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <returns></returns>
+	cout << "Описание человека: ";
+	mamm[0]->Describe(); 
+	cout << "Описание кошки: ";
+	mamm[1]->Describe(); 
+	cout << "Описание собаки: ";
+	mamm[2]->Describe(); 
+	cout << "Описание рыбы: ";
+	mamm[3]->Describe();
+	
 	system("pause");
 	system("cls");
+
+	cout << "Желаете перезаписать в файл новые данные?" << endl;
+	cout << "1 - Да" << endl;
+	cout << "2 - Нет" << endl;
+	cout << "--> ";
+	cin >> c;
+	switch (c)
+	{
+	case 1:
+		outFile.open(initfile);
+		if (!outFile)
+		{
+			cout << "Ошибка открытия файла!" << endl;
+			exit(1);
+		}
+		cout << "Введите через пробел новые данные: ";
+		cin >> full_name_people >> date_of_birth_people >> nationality_people >> breed_dog >> nickname_dog >> coat_color_dog >> full_name_of_the_owner_dog >> sizes_dog >> breed_cat >> nickname_cat >> coat_color_cat >> full_name_of_the_owner_cat >> sizes_cat >> breed_fish >> nickname_fish >> coat_color_fish >> full_name_of_the_owner_fish >> sizes_fish;
+		outFile << full_name_people << date_of_birth_people << nationality_people << breed_dog << nickname_dog << coat_color_dog << full_name_of_the_owner_dog << sizes_dog << breed_cat << nickname_cat << coat_color_cat << full_name_of_the_owner_cat << sizes_cat << breed_fish << nickname_fish << coat_color_fish << full_name_of_the_owner_fish << sizes_fish;
+		cout << "Данные записаны!" << endl;
+		outFile.close();
+		break;
+	case 2: break;
+	default: break;
+	}
+
+	return 0;
 }
