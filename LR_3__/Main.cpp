@@ -87,10 +87,10 @@ int main()
 
 	system("pause");
 	system("cls");
-	cout << "Описание человека: " << mamm[0]->Describe() << ", ФИО: " << full_name_people << ",дата рождения: " << date_of_birth_people << ",национальность: " << nationality_people << endl;
+	/*cout << "Описание человека: " << mamm[0]->Describe() << ", ФИО: " << full_name_people << ",дата рождения: " << date_of_birth_people << ",национальность: " << nationality_people << endl;
 	cout << "Описание кошки: " << mamm[1]->Describe() << ", порода: " << breed_cat << ", кличка: " << nickname_cat << ", окрас: " << coat_color_cat << ", ФИО владельца: " << full_name_of_the_owner_cat << ", размеры " << sizes_cat << endl;
 	cout << "Описание собаки: " << mamm[2]->Describe() << ", порода: " << breed_dog << ", кличка: " << nickname_dog << ", окрас: " << coat_color_dog << ", ФИО владельца: " << full_name_of_the_owner_dog << ", размеры " << sizes_dog << endl;
-	cout << "Описание рыбы: " << mamm[3]->Describe() << ", порода: " << breed_fish << ", кличка: " << nickname_fish << ", окрас: " << coat_color_fish << ", ФИО владельца: " << full_name_of_the_owner_fish << ", размеры " << sizes_fish << endl;
+	cout << "Описание рыбы: " << mamm[3]->Describe() << ", порода: " << breed_fish << ", кличка: " << nickname_fish << ", окрас: " << coat_color_fish << ", ФИО влад*/ельца: " << full_name_of_the_owner_fish << ", размеры " << sizes_fish << endl;
 	/// <summary>
 	/// 
 	/// </summary>
