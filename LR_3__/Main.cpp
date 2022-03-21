@@ -76,13 +76,13 @@ int main()
 		break;
 	}
 	Mammals* mamm[4];
-	People people(full_name_people, date_of_birth_people, nationality_people);
+	/*People people(full_name_people, date_of_birth_people, nationality_people);
 	Cats cat(breed_cat, nickname_cat, coat_color_cat, full_name_of_the_owner_cat, sizes_cat);
 	Dogs dog(breed_dog, nickname_dog, coat_color_dog, full_name_of_the_owner_dog, sizes_dog);
 	Fish fish(breed_fish, nickname_fish, coat_color_fish, full_name_of_the_owner_fish, sizes_fish);
 	mamm[0] = &people;
 	mamm[1] = &cat;
 	mamm[2] = &dog;
-	mamm[3] = &fish;
+	mamm[3] = &fish;*/
 
 }
