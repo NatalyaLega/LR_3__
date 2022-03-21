@@ -23,8 +23,16 @@ Cats::Cats(const Cats& copy_cats)
 
 Cats::~Cats() { }
 
-string Cats::Get_full_name() { return breed; }
-string Cats::Get_breed() { return nickname; }
-string Cats::Get_nickname() { return coat_color; }
-string Cats::Get_coat_color() { return full_name_of_the_owner; }
+string Cats::Get_full_name_of_the_owner() { return full_name_of_the_owner; }
+string Cats::Get_breed() { return breed; }
+string Cats::Get_nickname() { return nickname; }
+string Cats::Get_coat_color() { return coat_color; }
 string Cats::Get_sizes() { return sizes; }
+
+void Cats::Describe()
+{
+	Get_full_name_of_the_owner();
+	Get_breed();
+	Get_nickname();
+	Get_coat_color();
+}

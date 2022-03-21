@@ -14,7 +14,10 @@ public:
 	People(string full_name, string date_of_birth, string nationality);
 	People(const People& copy_people);
 	virtual ~People();
-	string Get_full_name()  override;
-	string Get_date_of_birth() override;
-	string Get_nationality() override;
+
+	void Describe() override;
+	
+	string Get_full_name();
+	string Get_date_of_birth();
+	string Get_nationality();
 };

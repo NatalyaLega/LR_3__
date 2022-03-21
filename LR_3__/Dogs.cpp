@@ -22,8 +22,16 @@ Dogs::Dogs(const Dogs& copy_dogs)
 }
 Dogs::~Dogs() { }
 
-string Dogs::Get_full_name() { return breed; }
-string Dogs::Get_breed() { return nickname; }
-string Dogs::Get_nickname() { return coat_color; }
-string Dogs::Get_coat_color() { return full_name_of_the_owner; }
+string Dogs::Get_full_name_of_the_owner() { return full_name_of_the_owner; }
+string Dogs::Get_breed() { return breed; }
+string Dogs::Get_nickname() { return nickname; }
+string Dogs::Get_coat_color() { return coat_color; }
 string Dogs::Get_sizes() { return sizes; }
+
+void Dogs::Describe()
+{
+	Get_full_name_of_the_owner();
+	Get_breed();
+	Get_nickname();
+	Get_coat_color();
+}

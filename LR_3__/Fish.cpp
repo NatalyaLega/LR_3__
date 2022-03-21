@@ -23,9 +23,17 @@ Fish::Fish(const Fish& copy_fish)
 
 Fish::~Fish() { }
 
-string Fish::Get_full_name() { return breed; }
+string Fish::Get_full_name_of_the_owner() { return full_name_of_the_owner; }
 string Fish::Get_breed() { return nickname; }
 string Fish::Get_nickname() { return coat_color; }
 string Fish::Get_coat_color() { return full_name_of_the_owner; }
 string Fish::Get_sizes() { return sizes; }
+
+void Fish::Describe()
+{
+	Get_full_name_of_the_owner();
+	Get_breed();
+	Get_nickname();
+	Get_coat_color();
+}
 

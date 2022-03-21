@@ -16,9 +16,11 @@ public:
 	Fish(const Fish& copy_cats);
 	Fish(string breed, string nickname, string coat_color, string full_name_of_the_owner, string sizes);
 	virtual ~Fish();
-	string Get_full_name() override;
-	string Get_breed() override;
-	string Get_nickname() override;
-	string Get_coat_color() override;
-	string Get_sizes() override;
+	string Get_full_name_of_the_owner();
+	string Get_breed();
+	string Get_nickname();
+	string Get_coat_color();
+	string Get_sizes();
+
+	void Describe() override;
 };

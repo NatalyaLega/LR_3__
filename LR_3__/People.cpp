@@ -20,7 +20,16 @@ People::People(const People& copy_people)
 
 People::~People() { }
 
+void People::Describe()
+{
+	Get_full_name();
+	Get_date_of_birth();
+	Get_nationality();
+}
+
 string People::Get_full_name() { return full_name; }
+
 string People::Get_date_of_birth() { return date_of_birth; }
+
 string People::Get_nationality() { return nationality; }
 

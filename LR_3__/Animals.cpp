@@ -7,13 +7,9 @@ Animals::Animals() {}
 
 Animals::~Animals() { }
 
-string Animals::Get_full_name() { return "Name of the owner"; }
+void Animals::Describe()
+{
+	cout << "Описание животных" << endl;
+}
 
-string Animals::Get_breed() { return "Breed"; }
-
-string Animals::Get_nickname() { return "Nickname"; }
-
-string Animals::Get_coat_color() { return "Coat color"; }
-
-string Animals::Get_sizes() { return "Sizec"; }
 

@@ -10,9 +10,6 @@ public:
 
 	virtual ~Animals();
 
-	string Get_full_name() override;
-	string Get_breed() override;
-	string Get_nickname() override;
-	string Get_coat_color() override;
-	string Get_sizes() override;
+	void Describe() override;
+
 };

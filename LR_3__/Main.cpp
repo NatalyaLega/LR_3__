@@ -76,13 +76,22 @@ int main()
 		break;
 	}
 	Mammals* mamm[4];
-	/*People people(full_name_people, date_of_birth_people, nationality_people);
+	People people(full_name_people, date_of_birth_people, nationality_people);
 	Cats cat(breed_cat, nickname_cat, coat_color_cat, full_name_of_the_owner_cat, sizes_cat);
 	Dogs dog(breed_dog, nickname_dog, coat_color_dog, full_name_of_the_owner_dog, sizes_dog);
 	Fish fish(breed_fish, nickname_fish, coat_color_fish, full_name_of_the_owner_fish, sizes_fish);
 	mamm[0] = &people;
 	mamm[1] = &cat;
 	mamm[2] = &dog;
-	mamm[3] = &fish;*/
+	mamm[3] = &fish;
 
+	system("pause");
+	system("cls");
+	cout << "Описание человека: " << mamm[0]->Describe() << ", ФИО: " << full_name_people << ",дата рождения: " << date_of_birth_people << ",национальность: " << nationality_people << endl;
+	cout << "Описание кошки: " << mamm[1]->Describe() << ", порода: " << breed_cat << ", кличка: " << nickname_cat << ", окрас: " << coat_color_cat << ", ФИО владельца: " << full_name_of_the_owner_cat << ", размеры " << sizes_cat << endl;
+	cout << "Описание собаки: " << mamm[2]->Describe() << ", порода: " << breed_dog << ", кличка: " << nickname_dog << ", окрас: " << coat_color_dog << ", ФИО владельца: " << full_name_of_the_owner_dog << ", размеры " << sizes_dog << endl;
+	cout << "Описание рыбы: " << mamm[3]->Describe() << ", порода: " << breed_fish << ", кличка: " << nickname_fish << ", окрас: " << coat_color_fish << ", ФИО владельца: " << full_name_of_the_owner_fish << ", размеры " << sizes_fish << endl;
+
+	system("pause");
+	system("cls");
 }
