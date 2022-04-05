@@ -9,124 +9,151 @@
 #include "Cats.h"
 #include "Dogs.h"
 #include "Fish.h"
-
+#include "fillers.h"
+#include "mammalsArray.h"
+#include <any>
 /*Вариант - 11 Создать абстрактный класс «Млекопитающие».Определить производные классы
 «Животные» и «Люди».У животных определить производные классы собак, котов и рыб, которые
 содержат в себе породу, кличку, окрас, ФИО владельца и размеры.Для класса «Люди» существуют
 поля : ФИО, дата рождения, национальность.Определить виртуальные функции описания
 человека, собаки, кота и рыбы.*/
 
-using namespace std;
+int menu() {
+	setlocale(LC_ALL, "Rus");
+	std::cout << "Кого будем вводить?" << endl;
+	std::cout << "1) Собака" << endl;
+	std::cout << "2) Кошка" << endl;
+	std::cout << "3) Человек" << endl;
+	std::cout << "4) Рыба" << endl;
+	std::cout << "5) End" << endl;
+	int i;
+	std::cin >> i;
+	return i;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Rus");
-	//тут создать переменные-объекты классов????????????
-	string breed_cat, nickname_cat, coat_color_cat, full_name_of_the_owner_cat, sizes_cat; //cat
-	string breed_dog, nickname_dog, coat_color_dog, full_name_of_the_owner_dog, sizes_dog; //dog
-	string breed_fish, nickname_fish, coat_color_fish, full_name_of_the_owner_fish, sizes_fish; //fish
-	string full_name_people, date_of_birth_people, nationality_people; //people
-
-
-	string initfile = "C:\\Users\\legan\\OneDrive\\LR_4\\data.txt";
+	string initfile = ".\\data.txt";
 	ifstream inFile;
 	ofstream outFile;
 
 	int c;
-	cout << "Вас приветствует программа 3-ей лабораторной по ТП!" << endl;
-	cout << "Как Вы хотите ввести данные?" << endl;
-	cout << "1 - Вручную" << endl;
-	cout << "2 - Из файла" << endl;
-	cout << "0 - Выход из программы" << endl;
-	cout << "--> ";
-	cin >> c;
-
+	std::cout << "Вас приветствует программа 3-ей лабораторной по ТП!" << endl;
+	std::cout << "Как Вы хотите ввести данные?" << endl;
+	std::cout << "1 - Вручную" << endl;
+	std::cout << "2 - Из файла" << endl;
+	std::cout << "0 - Выход из программы" << endl;
+	std::cout << "--> ";
+	std::cin >> c;
+	CustomArray mammals;
 	switch (c)
 	{
 	case 1: //Вручную
 		system("cls");
-		cout << "~" << "Введите данные 'человека' через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
-		cout << "ФИО, Дата рождения, Национальность\n\n";
-		cin >> full_name_people >> date_of_birth_people >> nationality_people;
-
-		cout << "\n" << "~" << "Введите данные 'собаки'через пробел(вместо пробела в данных нижнее подчеркивание):" << endl;
-		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
-		cin >> breed_dog >> nickname_dog >> coat_color_dog >> full_name_of_the_owner_dog >> sizes_dog;
-
-		cout << "\n" << "~" << "Введите данные 'кошки'через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
-		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
-		cin >> breed_cat >> nickname_cat >> coat_color_cat >> full_name_of_the_owner_cat >> sizes_cat;
-
-		cout << "\n" << "~" << "Введите данные 'рыбы'через пробел(вместо пробела в данных нижнее подчеркивание): " << endl;
-		cout << "Порода, кличка, окрас, ФИО владельца, размеры(длина и ширина)\n\n";
-		cin >> breed_fish >> nickname_fish >> coat_color_fish >> full_name_of_the_owner_fish >> sizes_fish;
-		break;
-	case 2:
+		{
+			int current_type= 0;
+			while (current_type+1 != 5) {
+				current_type = menu()-1;
+				ProcessData(mammals, current_type, std::cin, true);
+			}
+			break;
+		}
+	case 2: {
 		system("cls");
 		inFile.open(initfile);
 		if (!inFile)
 		{
-			cout << "Ошибка открытия файла!" << endl;
+			std::cout << "Ошибка открытия файла!" << endl;
 			exit(1);
 		}
-		cout << "Порядок взятия данных через пробел: человек, собака, кошка, рыба " << endl;
-		inFile >> full_name_people >> date_of_birth_people >> nationality_people >> breed_dog >> nickname_dog >> coat_color_dog >> full_name_of_the_owner_dog >> sizes_dog >> breed_cat >> nickname_cat >> coat_color_cat >> full_name_of_the_owner_cat >> sizes_cat >> breed_fish >> nickname_fish >> coat_color_fish >> full_name_of_the_owner_fish >> sizes_fish;
-
-		cout << "Данные взяты!" << endl;
+		/*Сначала (построчно)
+		читаем собак
+		потом читаем кошек
+		потом читаем людей
+		потом рыб
+		если не хотим вводить какой-то тип - ~ в начале строки*/
+		int current_type = 0;
+		while (!inFile.eof()) {
+			ProcessData(mammals, current_type, inFile);
+			char c;
+			inFile.get(c);
+			if (c == '\n') {
+				current_type++;
+				break;
+			}
+			inFile.unget();
+		}
+		std::cout << "Данные взяты!" << endl;
 		inFile.close();
-	break;	case 0:
+		break;
+	}
+	case 0:
 		exit(0);
 		break;
 	default:
 		break;
 	}
+	
+	std::cout << "Введенные данные: " << endl;
 
-	//ВОТ ТУТ НУЖНО СОЗДАВАТЬ НЕ 4, А СТОЛЬКО, СКОЛЬКО ЗАХОЧЕТ ПОЛЬЗОВАТЕЛЬ. пока не знаю как...ЕЩЕ РЕАЛИЗОВАТЬ ПОДСЧЕТ ОБЪЕКТОВ С ПОМОЩЬЮ СТАТИЧЕСКОЙ ПЕРЕМЕННОЙ
-	Mammals* mamm[4];
-	People people(full_name_people, date_of_birth_people, nationality_people);
-	Cats cat(breed_cat, nickname_cat, coat_color_cat, full_name_of_the_owner_cat, sizes_cat);
-	Dogs dog(breed_dog, nickname_dog, coat_color_dog, full_name_of_the_owner_dog, sizes_dog);
-	Fish fish(breed_fish, nickname_fish, coat_color_fish, full_name_of_the_owner_fish, sizes_fish);
-	mamm[0] = &people;
-	mamm[1] = &cat;
-	mamm[2] = &dog;
-	mamm[3] = &fish;
-
-	system("pause");
-	system("cls");
-	cout << "Описание человека: ";
-	mamm[0]->Describe(); 
-	cout << "Описание кошки: ";
-	mamm[1]->Describe(); 
-	cout << "Описание собаки: ";
-	mamm[2]->Describe(); 
-	cout << "Описание рыбы: ";
-	mamm[3]->Describe();
+	for (int i = 0; i < mammals.getSize(); i++) {
+		switch (mammals[i]->type)
+		{
+		case 0:
+			mammals[i]->dog->Describe();
+			break;
+		case 1:
+			mammals[i]->cat->Describe();
+			break;
+		case 2:
+			mammals[i]->hum->Describe();
+			break;
+		case 3:
+			mammals[i]->fish->Describe();
+			break;
+		}
+	}
 	
 	system("pause");
 	system("cls");
 
-	cout << "Желаете перезаписать в файл новые данные?" << endl;
-	cout << "1 - Да" << endl;
-	cout << "2 - Нет" << endl;
-	cout << "--> ";
-	cin >> c;
-	switch (c)
+	std::cout << "Желаете перезаписать в файл новые данные?" << endl;
+	std::cout << "1 - Да" << endl;
+	std::cout << "2 - Нет" << endl;
+	std::cout << "--> ";
+	int choice;
+	std::cin >> choice;
+	switch (choice)
 	{
-	case 1:
+	case 1: {
 		outFile.open(initfile);
 		if (!outFile)
 		{
 			cout << "Ошибка открытия файла!" << endl;
 			exit(1);
 		}
-		cout << "Введите через пробел новые данные: ";
-		cin >> full_name_people >> date_of_birth_people >> nationality_people >> breed_dog >> nickname_dog >> coat_color_dog >> full_name_of_the_owner_dog >> sizes_dog >> breed_cat >> nickname_cat >> coat_color_cat >> full_name_of_the_owner_cat >> sizes_cat >> breed_fish >> nickname_fish >> coat_color_fish >> full_name_of_the_owner_fish >> sizes_fish;
-		outFile << full_name_people << date_of_birth_people << nationality_people << breed_dog << nickname_dog << coat_color_dog << full_name_of_the_owner_dog << sizes_dog << breed_cat << nickname_cat << coat_color_cat << full_name_of_the_owner_cat << sizes_cat << breed_fish << nickname_fish << coat_color_fish << full_name_of_the_owner_fish << sizes_fish;
-		cout << "Данные записаны!" << endl;
+		//ввод
+		if (c==2) {
+			int current_type = 0;
+			while (current_type != 4) {
+				current_type = menu() - 1;
+				ProcessData(mammals, current_type, std::cin, true);
+			}
+		}
+		//вывод в файл
+		Writer(outFile, mammals.dogs, mammals.length[0]);
+		Writer(outFile, mammals.cats, mammals.length[1]);
+		Writer(outFile, mammals.people, mammals.length[2]);
+		Writer(outFile, mammals.fish, mammals.length[3]);
+		std::cout << "Данные записаны!" << endl;
 		outFile.close();
 		break;
-	case 2: break;
-	default: break;
+	}
+	case 2: 
+		break;
+	default: 
+		break;
 	}
 
 	return 0;

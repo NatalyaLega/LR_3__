@@ -16,8 +16,11 @@ public:
 	virtual ~People();
 
 	void Describe() override;
-	
 	string Get_full_name();
 	string Get_date_of_birth();
 	string Get_nationality();
+	int Type() {
+		return 2;
+	}
 };
+

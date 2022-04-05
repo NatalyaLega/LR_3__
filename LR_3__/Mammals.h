@@ -9,9 +9,7 @@ public:
 	virtual ~Mammals() {};
 
 //виртуальные функции для описания человека, собаки, кота и рыбы
-	
-virtual void Describe() = 0; //функция для описания
-
+	virtual void Describe() = 0; //функция для описания
   private:
  	static int Count;  //переменная для подсчёта кол-ва объектов
 };

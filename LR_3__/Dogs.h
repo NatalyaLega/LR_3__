@@ -23,4 +23,7 @@ public:
 	string Get_sizes();
 
 	void Describe() override;
+	int Type() {
+		return 0;
+	}
 };
